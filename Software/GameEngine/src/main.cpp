@@ -14,6 +14,8 @@
 #include "FrameBuffer.h"
 #include "EnginePanic.h"
 #include "fonts/Monaco9.h"
+#include "drv_nau8810.h"
+#include "cmixer.h"
 
 #ifdef DC801_EMBEDDED
 //only init QSPI if we're in embedded mode:
@@ -49,12 +51,21 @@ void sig_handler(int signo)
 #pragma message ("NRFX_TIMER1_ENABLED=" VAL(NRFX_TIMER1_ENABLED))
 */
 
+#define UNUSED(e) ((void)(e))
+
+static void dummy_handler(int parm) {
+	UNUSED(parm);
+}
+
 /**
  * Initialize the speaker
  */
 static void speaker_init(void){
 	// Setup the nau8810 later -Tim
-	//nrf_gpio_cfg_output(SPEAKER);
+	// nrf_gpio_cfg_output(SPEAKER);
+	nau8810_init((nrfx_i2s_data_handler_t)dummy_handler);
+	uint16_t val = nau8810_twi_read(0x3E);
+	debug_print("%d", val);
 }
 
 /**
@@ -107,7 +118,8 @@ int main(void){
 	keyboard_init();
 
 	//this function will set up the NAU8810 chip to play sounds
-	//speaker_init();
+	speaker_init();
+	
 
 	// BLE
 	//gap_params_init();

@@ -4,6 +4,7 @@
 #include "EngineAudio.h"
 
 #include "cmixer.h"
+#include "drv_nau8810.h"
 
 // Used in place of std::mutex because of size constraints when including
 // C++ threading and synchronization. More info here:

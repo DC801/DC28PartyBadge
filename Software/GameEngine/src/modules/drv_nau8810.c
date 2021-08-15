@@ -190,7 +190,7 @@ void nau8810_init(nrfx_i2s_data_handler_t handler)
 	MOUTMXEN	= 0x00;	 // Leave mono mixer disabled
 	MOUTEN		= 0x00;	 // Leave mono output disabled
 	NSPKEN		= 0x01;	 // Enable negative side speaker driver
-	PSPKEN		= 0x01;	 // Enable positive side speakre driver
+	PSPKEN		= 0x01;	 // Enable positive side speaker driver
 	SMPLR		= 0x01;	 // 32kHz sample rate filter
 	DACMT		= 0x00;	 // Disable DAC soft mute						(default)
 
@@ -208,6 +208,8 @@ void nau8810_init(nrfx_i2s_data_handler_t handler)
 	// Initialize NAU8810 I2S instance
 	nau8810_i2s_init(handler);
 }
+
+// #if 0
 
 void nau8810_start(const uint32_t *data, uint16_t length)
 {
@@ -235,5 +237,7 @@ void nau8810_stop(void)
 {
 	nrfx_i2s_stop();
 }
+
+// #endif
 
 #endif

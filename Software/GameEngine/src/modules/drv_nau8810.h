@@ -289,6 +289,8 @@ void nau8810_init(nrfx_i2s_data_handler_t handler);
 void nau8810_start(const uint32_t *data, uint16_t length);
 void nau8810_next(const uint32_t *data);
 void nau8810_stop(void);
+uint16_t nau8810_twi_read(uint8_t addr);
+void nau8810_twi_write(uint8_t addr, uint16_t val);
 
 #endif
 
